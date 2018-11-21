@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} detalle_avance {% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+	<div>
+		<h1 class="text-center">{{object.nombre_avance}}</h1>
+		<p class="text-justify">Proyecto: {{object.nombre_proyecto}}</p>
+
+		<table class="table table-strip mt-5">
+			<th>Actividades del avance</th>
+			<th>Fecha de realización</th>
+			{%for actividad in object.actividades_set.all %}
+				<tr>
+						<td>{{ actividad.nombre_actividad }} </td>
+						<td>{{ actividad.fecha_entrega }} </td>
+						<td><a href="{% url 'detalle_actividad_view' actividad.id%}" class="btn btn-dark">Detalle</a></td>
+						<td><a href="#" class="btn btn-dark">Actualizar</a></td>
+				</tr>
+
+					{% empty %}
+					{% if request.GET.q %}
+						No se entontro clientes
+					{% else %}
+						No hay datos
+					{% endif %}
+			{% endfor %}
+	</table>
+</section>
+{% endblock %}

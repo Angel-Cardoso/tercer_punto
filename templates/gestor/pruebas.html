@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} detalle_proyecto {% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+	<div>
+		<h1 class="text-center">{{object.nombre_proyecto}}</h1>
+		<p class="text-justify">Descripcion: {{object.descripcion}}</p>
+
+		<table class="table table-strip mt-5">
+			<th>Personal dentro del proyecto</th>
+			{%for personal in object.proyecto_empleado_set.all %}
+				<tr>
+						<td>{{ personal.nombre_personal }} </td>
+						<td><a href="{% url 'detalle_personal_view' personal.id%}" class="btn btn-dark">Detalle</a></td>
+						<td><a href="#" class="btn btn-dark">Actualizar</a></td>
+				</tr>
+
+					{% empty %}
+					{% if request.GET.q %}
+						No se entontro clientes
+					{% else %}
+						No hay datos
+					{% endif %}
+			{% endfor %}
+	</table>
+</section>
+{% endblock %}

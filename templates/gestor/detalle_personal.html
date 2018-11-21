@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} detalle personal{% endblock %}
+
+{% block content %}
+<section class="container mt-5">
+	<div>
+		<h1 class="text-center">{{object.nombre_personal}}</h1>
+		<p class="text-justify">Edad: {{object.edad}}</p>
+		<p class="text-justify">Sexo: {{object.sexo}}</p>
+		<p class="text-justify">Telefono: {{object.telefono}}</p>
+		<p class="text-justify">Cargo: {{object.cargo}}</p>
+</section>
+{% endblock %}
